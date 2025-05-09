@@ -1,4 +1,6 @@
+
 import * as React from "react";
+import { Link } from "react-router-dom";
 
 export const HeroSection = () => {
   return (
@@ -12,9 +14,11 @@ export const HeroSection = () => {
         <h1 className="text-white text-[32px] font-bold tracking-[4px] max-md:max-w-full">
           BLEND OF ITALIAN & MODERN ROCOCO
         </h1>
-        <button className="self-center bg-white w-[141px] max-w-full gap-2.5 text-sm text-black font-medium tracking-[1px] mt-[19px] px-3 py-4">
-          SEE MORE
-        </button>
+        <Link to="/blazers" className="self-center">
+          <button className="bg-white w-[141px] max-w-full gap-2.5 text-sm text-black font-medium tracking-[1px] mt-[19px] px-3 py-4">
+            SEE MORE
+          </button>
+        </Link>
       </div>
     </section>
   );
