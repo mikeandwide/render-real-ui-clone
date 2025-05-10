@@ -1,8 +1,7 @@
 
 import * as React from "react";
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { ArrowRight } from "lucide-react";
 
 export const NewsletterSection = () => {
   const [email, setEmail] = useState("");
@@ -14,7 +13,7 @@ export const NewsletterSection = () => {
   };
 
   return (
-    <section className="flex w-full max-w-[1151px] items-stretch gap-5 flex-wrap justify-between ml-3 mt-[218px] max-md:max-w-full max-md:mt-10">
+    <section className="flex w-full max-w-[1151px] flex-col md:flex-row gap-5 justify-between ml-3 mt-[218px] max-md:max-w-full max-md:mt-10">
       <div className="flex flex-col items-stretch max-md:max-w-full">
         <h2 className="text-black text-2xl font-semibold">
           JOIN #MIKEANDWIDE
@@ -28,31 +27,28 @@ export const NewsletterSection = () => {
           <label className="text-black text-sm font-medium leading-none max-md:max-w-full">
             Email Address
           </label>
-          <div className="flex w-full items-stretch mt-1 max-md:max-w-full">
+          <div className="flex w-full mt-1 max-md:max-w-full">
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter your mail id"
-              className="flex-grow text-sm text-black font-light leading-none w-[442px] px-2.5 py-5 border-black border-t border-b border-l max-md:max-w-full"
+              className="flex-grow text-sm text-black font-light leading-none w-[442px] px-4 py-4 h-[59px] border-black border-t border-b border-l max-md:max-w-full"
               required
             />
             <button
               type="submit"
-              className="border border-black flex items-center justify-center h-[59px] w-[59px]" 
+              className="flex items-center justify-center h-[59px] w-[59px] border border-black bg-white"
+              aria-label="Submit"
             >
-              <img
-                src="https://cdn.builder.io/api/v1/image/assets/TEMP/32e50973d30a35cd3ce3d61c86d93c602d9d8a30?placeholderIfAbsent=true"
-                alt="Submit"
-                className="w-6 h-6 object-contain"
-              />
+              <ArrowRight size={24} className="text-black" />
             </button>
           </div>
         </form>
       </div>
       <div className="flex items-stretch">
         <img
-          src="https://cdn.builder.io/api/v1/image/assets/TEMP/9b60c7b58550f090e3a181e44b04f0ca432921d0?placeholderIfAbsent=true"
+          src="public/lovable-uploads/10fa74a9-3898-41cf-9c42-9154ec883429.png"
           alt="Newsletter decoration"
           className="aspect-[1.5] object-contain w-fit z-10 mr-[-145px] grow shrink-0 basis-0 mt-[99px] max-md:mt-10"
         />
