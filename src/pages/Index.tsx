@@ -1,12 +1,13 @@
+
 import * as React from "react";
 import { Header } from "@/components/layout/Header";
 import { MainNav } from "@/components/layout/MainNav";
-import { Footer } from "@/components/layout/Footer";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { ProductGrid } from "@/components/sections/ProductGrid";
 import { BlogSection } from "@/components/sections/BlogSection";
 import { ColorShopSection } from "@/components/sections/ColorShopSection";
-import { NewsletterSection } from "@/components/sections/NewsletterSection";
+import { NewsletterSection } from "@/components/newsletter/NewsletterSection";
+import { Footer } from "@/components/footer/Footer";
 
 export default function Index() {
   return (
@@ -29,7 +30,9 @@ export default function Index() {
           <NewsletterSection />
         </div>
       </div>
-      <Footer />
+      <div className="w-full px-[65px] max-md:px-5">
+        <Footer />
+      </div>
     </div>
   );
 }
