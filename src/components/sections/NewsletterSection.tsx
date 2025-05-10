@@ -1,5 +1,8 @@
+
 import * as React from "react";
 import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 export const NewsletterSection = () => {
   const [email, setEmail] = useState("");
@@ -25,23 +28,23 @@ export const NewsletterSection = () => {
           <label className="text-black text-sm font-medium leading-none max-md:max-w-full">
             Email Address
           </label>
-          <div className="flex w-full items-center flex-wrap mt-1 max-md:max-w-full">
+          <div className="flex w-full items-stretch mt-1 max-md:max-w-full">
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter your mail id"
-              className="self-stretch min-w-60 text-sm text-black font-light leading-none w-[442px] my-auto px-2.5 py-5 border-black border-t border-b border-l max-md:max-w-full"
+              className="flex-grow text-sm text-black font-light leading-none w-[442px] px-2.5 py-5 border-black border-t border-b border-l max-md:max-w-full"
               required
             />
             <button
               type="submit"
-              className="border self-stretch flex min-h-[59px] items-center gap-2.5 flex-1 shrink basis-[0%] my-auto px-4 py-[18px] border-black border-solid"
+              className="border border-black flex items-center justify-center h-[59px] w-[59px]" 
             >
               <img
                 src="https://cdn.builder.io/api/v1/image/assets/TEMP/32e50973d30a35cd3ce3d61c86d93c602d9d8a30?placeholderIfAbsent=true"
                 alt="Submit"
-                className="aspect-[1] object-contain w-6 self-stretch flex-1 shrink basis-[0%] my-auto"
+                className="w-6 h-6 object-contain"
               />
             </button>
           </div>
