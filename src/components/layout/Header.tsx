@@ -9,6 +9,9 @@ import {
 import { ChevronDown } from "lucide-react";
 
 export const Header = () => {
+  const [selectedCountry, setSelectedCountry] = React.useState("INDIA");
+  const [open, setOpen] = React.useState(false);
+
   const countries = [
     "INDIA", "USA", "UK", "CANADA", 
     "AUSTRALIA", "FRANCE", "GERMANY", "JAPAN",
@@ -21,19 +24,22 @@ export const Header = () => {
         <div className="bg-blend-normal text-[rgba(19,20,21,1)] font-normal">
           SHIPPING TO
         </div>
-        <Popover>
+        <Popover open={open} onOpenChange={setOpen}>
           <PopoverTrigger className="flex items-center gap-1 bg-blend-normal text-black font-medium underline mt-1 cursor-pointer">
-            INDIA <ChevronDown className="h-4 w-4" />
+            {selectedCountry} <ChevronDown className="h-4 w-4" />
           </PopoverTrigger>
           <PopoverContent className="w-48 p-0">
             <div className="max-h-60 overflow-auto py-1">
               {countries.map((country) => (
                 <button 
                   key={country}
-                  className="w-full text-left px-4 py-2 text-sm hover:bg-gray-100"
+                  className={`w-full text-left px-4 py-2 text-sm hover:bg-gray-100 ${
+                    selectedCountry === country ? "bg-gray-100" : ""
+                  }`}
                   onClick={() => {
                     console.log(`Selected country: ${country}`);
-                    // Here you would typically update state or make an API call
+                    setSelectedCountry(country);
+                    setOpen(false);
                   }}
                 >
                   {country}
