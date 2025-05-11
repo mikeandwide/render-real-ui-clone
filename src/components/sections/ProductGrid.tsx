@@ -1,6 +1,5 @@
 
 import * as React from "react";
-import { Link } from "react-router-dom";
 import { ProductCard } from "../ui/ProductCard";
 
 export const ProductGrid = () => {
@@ -37,10 +36,8 @@ export const ProductGrid = () => {
 
   return (
     <section className="bg-[rgba(242,242,242,1)] self-center flex items-center gap-2.5 flex-wrap max-md:max-w-full">
-      {products.map((product, index) => (
-        <Link key={index} to={`/product/${product.id}`}>
-          <ProductCard {...product} />
-        </Link>
+      {products.map((product) => (
+        <ProductCard key={product.id} {...product} />
       ))}
     </section>
   );
