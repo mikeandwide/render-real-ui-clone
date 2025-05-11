@@ -2,6 +2,7 @@
 import React from 'react';
 import { FooterSection } from './FooterSection';
 import { FooterLink } from './FooterLink';
+import { Link } from 'react-router-dom';
 
 export const Footer: React.FC = () => {
   const infoLinks = [
@@ -62,6 +63,3 @@ export const Footer: React.FC = () => {
     </footer>
   );
 };
-
-// Need to import Link at the top
-import { Link } from 'react-router-dom';
