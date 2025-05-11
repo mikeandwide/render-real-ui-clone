@@ -4,36 +4,18 @@ import { Header } from "@/components/layout/Header";
 import { MainNav } from "@/components/layout/MainNav";
 import { Footer } from "@/components/layout/Footer";
 import { Link } from "react-router-dom";
+import { useCart } from "@/contexts/CartContext";
 
 export default function CartPage() {
-  // Mock cart data
-  const [cartItems, setCartItems] = React.useState([
-    {
-      id: 1,
-      name: "BLACK STRUCTURE WORSTED WOOL BLAZER",
-      price: 56,
-      size: "M",
-      color: "Black",
-      quantity: 1,
-      image: "https://cdn.builder.io/api/v1/image/assets/TEMP/6edeb25a051fc1ef9e8bc51e7002433f16cd42b3?placeholderIfAbsent=true"
-    }
-  ]);
+  const { cartItems, updateQuantity, removeFromCart } = useCart();
   
-  const updateQuantity = (id: number, newQuantity: number) => {
-    if (newQuantity < 1) return;
-    
-    setCartItems(items => 
-      items.map(item => 
-        item.id === id ? {...item, quantity: newQuantity} : item
-      )
-    );
-  };
+  const subtotal = cartItems.reduce((sum, item) => {
+    const itemPrice = typeof item.price === "string" 
+      ? parseFloat(item.price.replace(/[^0-9.]/g, "")) 
+      : item.price;
+    return sum + (itemPrice * item.quantity);
+  }, 0);
   
-  const removeItem = (id: number) => {
-    setCartItems(items => items.filter(item => item.id !== id));
-  };
-  
-  const subtotal = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
   const shipping = subtotal > 100 ? 0 : 10;
   const total = subtotal + shipping;
   
@@ -66,65 +48,71 @@ export default function CartPage() {
                   <div className="text-center">Total</div>
                 </div>
                 
-                {cartItems.map((item) => (
-                  <div key={item.id} className="py-6 border-b border-gray-200 md:grid md:grid-cols-[2fr,1fr,1fr,1fr] md:gap-4 md:items-center">
-                    <div className="flex gap-4 items-center mb-4 md:mb-0">
-                      <img 
-                        src={item.image} 
-                        alt={item.name}
-                        className="w-20 h-24 object-contain bg-[#f9f9f9]"
-                      />
-                      <div>
-                        <p className="font-medium">{item.name}</p>
-                        <p className="text-sm text-gray-600 mt-1">Size: {item.size}</p>
-                        <p className="text-sm text-gray-600">Color: {item.color}</p>
+                {cartItems.map((item) => {
+                  const itemPrice = typeof item.price === "string" 
+                    ? parseFloat(item.price.replace(/[^0-9.]/g, "")) 
+                    : item.price;
+                  
+                  return (
+                    <div key={`${item.id}-${item.size}-${item.color}`} className="py-6 border-b border-gray-200 md:grid md:grid-cols-[2fr,1fr,1fr,1fr] md:gap-4 md:items-center">
+                      <div className="flex gap-4 items-center mb-4 md:mb-0">
+                        <img 
+                          src={item.image} 
+                          alt={item.name}
+                          className="w-20 h-24 object-contain bg-[#f9f9f9]"
+                        />
+                        <div>
+                          <p className="font-medium">{item.name}</p>
+                          <p className="text-sm text-gray-600 mt-1">Size: {item.size}</p>
+                          <p className="text-sm text-gray-600">Color: {item.color}</p>
+                          <button 
+                            onClick={() => removeFromCart(item.id)}
+                            className="text-sm text-gray-500 underline mt-2 md:hidden"
+                          >
+                            Remove
+                          </button>
+                        </div>
+                      </div>
+                      
+                      <div className="md:text-center">
+                        <span className="md:hidden">Price: </span>
+                        ${itemPrice}
+                      </div>
+                      
+                      <div className="flex items-center justify-between md:justify-center mt-2 md:mt-0">
+                        <span className="md:hidden">Quantity: </span>
+                        <div className="flex border border-gray-300 w-24">
+                          <button 
+                            className="w-8 h-8 flex items-center justify-center"
+                            onClick={() => updateQuantity(item.id, Math.max(1, item.quantity - 1))}
+                          >
+                            −
+                          </button>
+                          <div className="flex-1 h-8 flex items-center justify-center">
+                            {item.quantity}
+                          </div>
+                          <button 
+                            className="w-8 h-8 flex items-center justify-center"
+                            onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                          >
+                            +
+                          </button>
+                        </div>
+                      </div>
+                      
+                      <div className="flex justify-between mt-2 md:mt-0 md:justify-center">
+                        <span className="md:hidden">Total: </span>
+                        ${(itemPrice * item.quantity).toFixed(2)}
                         <button 
-                          onClick={() => removeItem(item.id)}
-                          className="text-sm text-gray-500 underline mt-2 md:hidden"
+                          onClick={() => removeFromCart(item.id)}
+                          className="text-sm text-gray-500 underline hidden md:block"
                         >
                           Remove
                         </button>
                       </div>
                     </div>
-                    
-                    <div className="md:text-center">
-                      <span className="md:hidden">Price: </span>
-                      ${item.price}
-                    </div>
-                    
-                    <div className="flex items-center justify-between md:justify-center mt-2 md:mt-0">
-                      <span className="md:hidden">Quantity: </span>
-                      <div className="flex border border-gray-300 w-24">
-                        <button 
-                          className="w-8 h-8 flex items-center justify-center"
-                          onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                        >
-                          −
-                        </button>
-                        <div className="flex-1 h-8 flex items-center justify-center">
-                          {item.quantity}
-                        </div>
-                        <button 
-                          className="w-8 h-8 flex items-center justify-center"
-                          onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                        >
-                          +
-                        </button>
-                      </div>
-                    </div>
-                    
-                    <div className="flex justify-between mt-2 md:mt-0 md:justify-center">
-                      <span className="md:hidden">Total: </span>
-                      ${(item.price * item.quantity).toFixed(2)}
-                      <button 
-                        onClick={() => removeItem(item.id)}
-                        className="text-sm text-gray-500 underline hidden md:block"
-                      >
-                        Remove
-                      </button>
-                    </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
               
               <div className="flex-1">

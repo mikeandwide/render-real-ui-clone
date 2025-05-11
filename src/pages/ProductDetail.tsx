@@ -4,11 +4,16 @@ import { Header } from "@/components/layout/Header";
 import { MainNav } from "@/components/layout/MainNav";
 import { Footer } from "@/components/layout/Footer";
 import { useParams, useNavigate } from "react-router-dom";
+import { useCart } from "@/contexts/CartContext";
+import { useToast } from "@/hooks/use-toast";
 
 export default function ProductDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { addToCart } = useCart();
+  const { toast } = useToast();
   const [selectedSize, setSelectedSize] = React.useState("M");
+  const [selectedColor, setSelectedColor] = React.useState("");
   const [quantity, setQuantity] = React.useState(1);
 
   // Mock product data
@@ -26,10 +31,41 @@ export default function ProductDetail() {
     ]
   };
 
+  // Set default selected color
+  React.useEffect(() => {
+    if (product.colors.length > 0 && !selectedColor) {
+      setSelectedColor(product.colors[0]);
+    }
+  }, [product.colors, selectedColor]);
+
   const handleAddToCart = () => {
+    // Get color name based on hex code
+    const colorNames: { [key: string]: string } = {
+      "#191919": "Black",
+      "#743a2d": "Brown",
+      "#67686d": "Gray",
+    };
+    
+    const colorName = colorNames[selectedColor] || "Default";
+    
+    // Add item to cart
+    addToCart({
+      id: product.id || "1",
+      name: product.name,
+      price: product.price,
+      quantity: quantity,
+      size: selectedSize,
+      color: colorName,
+      image: product.images[0]
+    });
+    
+    // Show success toast
+    toast({
+      title: "Added to cart",
+      description: `${product.name} (Size: ${selectedSize}) has been added to your cart.`,
+    });
+    
     console.log(`Added to cart: ${product.name}, Size: ${selectedSize}, Quantity: ${quantity}`);
-    // Here you would normally update cart state or send to an API
-    alert("Product added to cart!");
   };
 
   return (
@@ -70,8 +106,11 @@ export default function ProductDetail() {
                 {product.colors.map((color, index) => (
                   <div 
                     key={index}
-                    className="w-6 h-6 rounded-full cursor-pointer border border-gray-300"
+                    className={`w-6 h-6 rounded-full cursor-pointer border ${selectedColor === color 
+                      ? 'border-black ring-2 ring-offset-2 ring-gray-300' 
+                      : 'border-gray-300'}`}
                     style={{ backgroundColor: color }}
+                    onClick={() => setSelectedColor(color)}
                   />
                 ))}
               </div>
