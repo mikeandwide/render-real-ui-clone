@@ -15,6 +15,19 @@ import ProductDetail from "./pages/ProductDetail";
 import CartPage from "./pages/CartPage";
 import CheckoutPage from "./pages/CheckoutPage";
 
+// Footer pages
+import OrderTrackingPage from "./pages/OrderTrackingPage";
+import ShippingPage from "./pages/ShippingPage";
+import ReturnsPage from "./pages/ReturnsPage";
+import ContactPage from "./pages/ContactPage";
+import ProductInfoPage from "./pages/ProductInfoPage";
+import HistoryPage from "./pages/HistoryPage";
+import WorldPage from "./pages/WorldPage";
+import CareersPage from "./pages/CareersPage";
+import LegalPage from "./pages/LegalPage";
+import PrivacyPage from "./pages/PrivacyPage";
+import SitemapPage from "./pages/SitemapPage";
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -33,6 +46,20 @@ const App = () => (
           <Route path="/product/:id" element={<ProductDetail />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/checkout" element={<CheckoutPage />} />
+          
+          {/* Footer page routes */}
+          <Route path="/order-tracking" element={<OrderTrackingPage />} />
+          <Route path="/shipping" element={<ShippingPage />} />
+          <Route path="/returns" element={<ReturnsPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/product-info" element={<ProductInfoPage />} />
+          <Route path="/history" element={<HistoryPage />} />
+          <Route path="/world" element={<WorldPage />} />
+          <Route path="/careers" element={<CareersPage />} />
+          <Route path="/legal" element={<LegalPage />} />
+          <Route path="/privacy" element={<PrivacyPage />} />
+          <Route path="/sitemap" element={<SitemapPage />} />
+          
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

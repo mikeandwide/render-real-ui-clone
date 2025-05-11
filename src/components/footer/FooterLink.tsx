@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 interface FooterLinkProps {
   href: string;
@@ -8,11 +9,11 @@ interface FooterLinkProps {
 
 export const FooterLink: React.FC<FooterLinkProps> = ({ href, children }) => {
   return (
-    <a
-      href={href}
+    <Link
+      to={href}
       className="text-sm text-black font-medium leading-[19px] hover:opacity-70 transition-opacity"
     >
       {children}
-    </a>
+    </Link>
   );
 };

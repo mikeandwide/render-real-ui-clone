@@ -30,7 +30,7 @@ export const Footer: React.FC = () => {
   ];
 
   return (
-    <footer className="flex flex-col gap-[43px] mt-[108px] max-md:mt-10">
+    <footer className="flex flex-col gap-[43px]">
       <div className="flex justify-between max-md:flex-col max-md:gap-10">
         <div className="flex flex-col gap-14">
           <div className="flex flex-col gap-5">
@@ -52,11 +52,16 @@ export const Footer: React.FC = () => {
       
       <div className="w-full h-px bg-black opacity-50 mt-[42px]" />
       
-      <img
-        src="https://cdn.builder.io/api/v1/image/assets/TEMP/b7023b2c9a6e1635a201356672af3d8e9c8e09f7?placeholderIfAbsent=true"
-        alt="Mike & Wide Logo"
-        className="w-[92px] h-[47px] object-contain"
-      />
+      <Link to="/">
+        <img
+          src="https://cdn.builder.io/api/v1/image/assets/TEMP/b7023b2c9a6e1635a201356672af3d8e9c8e09f7?placeholderIfAbsent=true"
+          alt="Mike & Wide Logo"
+          className="w-[92px] h-[47px] object-contain"
+        />
+      </Link>
     </footer>
   );
 };
+
+// Need to import Link at the top
+import { Link } from 'react-router-dom';
