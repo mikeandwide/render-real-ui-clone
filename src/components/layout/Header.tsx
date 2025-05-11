@@ -6,15 +6,18 @@ import {
   PopoverContent,
   PopoverTrigger
 } from "@/components/ui/popover";
-import { ChevronDown, ShoppingCart } from "lucide-react";
+import { ChevronDown, ShoppingCart, Heart } from "lucide-react";
 import { useCart } from "@/contexts/CartContext";
+import { useWishlist } from "@/contexts/WishlistContext";
 
 export const Header = () => {
   const [selectedCountry, setSelectedCountry] = React.useState("INDIA");
   const [open, setOpen] = React.useState(false);
   const { cartItems } = useCart();
+  const { wishlistItems } = useWishlist();
 
   const cartItemCount = cartItems.reduce((total, item) => total + item.quantity, 0);
+  const wishlistItemCount = wishlistItems.length;
 
   const countries = [
     "INDIA", "USA", "UK", "CANADA", 
@@ -60,10 +63,16 @@ export const Header = () => {
           className="aspect-[4.52] object-contain w-[385px] self-stretch"
         />
       </Link>
-      <Link to="/cart" className="self-stretch flex gap-6 text-black font-normal whitespace-nowrap my-auto items-center">
-        <ShoppingCart className="w-6 h-6" />
-        <div className="bg-white gap-1">{cartItemCount}</div>
-      </Link>
+      <div className="self-stretch flex gap-6 text-black font-normal whitespace-nowrap my-auto items-center">
+        <Link to="/wishlist" className="flex items-center gap-1">
+          <Heart className="w-6 h-6" />
+          <div className="bg-white">{wishlistItemCount}</div>
+        </Link>
+        <Link to="/cart" className="flex items-center gap-1">
+          <ShoppingCart className="w-6 h-6" />
+          <div className="bg-white">{cartItemCount}</div>
+        </Link>
+      </div>
     </header>
   );
 };
