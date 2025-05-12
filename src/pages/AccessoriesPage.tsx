@@ -9,37 +9,37 @@ export default function AccessoriesPage() {
   const products = [
     {
       id: 31,
-      imageUrl: "https://cdn.builder.io/api/v1/image/assets/TEMP/075b8e8220a4f173d542b9f63784b0614b809a14?placeholderIfAbsent=true",
+      imageUrl: "public/lovable-uploads/e683832a-28b1-4e98-82c6-cc49d9db3d2b.png",
       title: "LEATHER WATCH",
       price: "$ 89"
     },
     {
       id: 32,
-      imageUrl: "https://cdn.builder.io/api/v1/image/assets/TEMP/075b8e8220a4f173d542b9f63784b0614b809a14?placeholderIfAbsent=true",
+      imageUrl: "public/lovable-uploads/e683832a-28b1-4e98-82c6-cc49d9db3d2b.png",
       title: "LEATHER WATCH",
       price: "$ 89"
     },
     {
       id: 33,
-      imageUrl: "https://cdn.builder.io/api/v1/image/assets/TEMP/075b8e8220a4f173d542b9f63784b0614b809a14?placeholderIfAbsent=true",
+      imageUrl: "public/lovable-uploads/e683832a-28b1-4e98-82c6-cc49d9db3d2b.png",
       title: "LEATHER WATCH",
       price: "$ 89"
     },
     {
       id: 34,
-      imageUrl: "https://cdn.builder.io/api/v1/image/assets/TEMP/075b8e8220a4f173d542b9f63784b0614b809a14?placeholderIfAbsent=true",
+      imageUrl: "public/lovable-uploads/e683832a-28b1-4e98-82c6-cc49d9db3d2b.png",
       title: "LEATHER WATCH",
       price: "$ 89"
     },
     {
       id: 35,
-      imageUrl: "https://cdn.builder.io/api/v1/image/assets/TEMP/075b8e8220a4f173d542b9f63784b0614b809a14?placeholderIfAbsent=true",
+      imageUrl: "public/lovable-uploads/e683832a-28b1-4e98-82c6-cc49d9db3d2b.png",
       title: "LEATHER WATCH",
       price: "$ 89"
     },
     {
       id: 36,
-      imageUrl: "https://cdn.builder.io/api/v1/image/assets/TEMP/075b8e8220a4f173d542b9f63784b0614b809a14?placeholderIfAbsent=true",
+      imageUrl: "public/lovable-uploads/e683832a-28b1-4e98-82c6-cc49d9db3d2b.png",
       title: "LEATHER WATCH",
       price: "$ 89"
     }
